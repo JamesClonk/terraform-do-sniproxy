@@ -26,3 +26,15 @@ clean:
 	rm -f terraform.tfstate.backup
 	rm -f ssh/sniproxy
 	rm -f ssh/sniproxy.pub
+
+countdown_6h:
+	./countdown.pl 21600
+
+countdown_d:
+	./countdown.pl 285000
+
+timer: countdown_6h destroy clean
+
+today: all countdown_6h destroy clean
+
+week: all countdown_d destroy clean
