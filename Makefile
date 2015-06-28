@@ -14,7 +14,7 @@ plan:
 	terraform plan -var "do_token=${DO_TOKEN}" -out terraform.tfplan
 
 apply:
-	terraform apply -var "do_token=${DO_TOKEN}" terraform.tfvars
+	terraform apply -var "do_token=${DO_TOKEN}"
 
 destroy:
 	terraform destroy -var "do_token=${DO_TOKEN}"
