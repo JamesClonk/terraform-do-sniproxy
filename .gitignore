@@ -22,3 +22,9 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+# ---
+ssh/sniproxy*
+terraform.tfvars*
+terraform.tfplan*
+terraform.tfstate*
