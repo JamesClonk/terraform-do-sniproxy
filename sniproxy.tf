@@ -26,13 +26,13 @@ resource "digitalocean_droplet" "sniproxy" {
         user = "root"
         key_file = "${var.do_ssh_private_key_file}"
     }
-    
+
     provisioner "remote-exec" {
         inline = [
             "sleep 15",
             "sudo apt-get update",
             "sudo apt-get -y install git",
-            "cd /opt && git clone https://github.com/JamesClonk/netflix-proxy.git && cd netflix-proxy && ./build.sh",
+            "cd /opt && git clone https://github.com/JamesClonk/netflix-proxy.git && cd netflix-proxy && ./build.sh -b 1",
         ]
     }
 }
