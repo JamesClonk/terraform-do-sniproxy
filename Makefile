@@ -17,7 +17,7 @@ apply:
 	terraform apply -var "do_token=${DO_TOKEN}"
 
 destroy:
-	terraform destroy -var "do_token=${DO_TOKEN}"
+	terraform destroy -var "do_token=${DO_TOKEN}" -force
 
 clean:
 	rm -f terraform.tfvars
