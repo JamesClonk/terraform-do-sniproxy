@@ -1,3 +1,7 @@
+variable "client_ip" {
+	description = "Client IP for iptables config"
+}
+
 variable "do_token" {
 	description = "DigitalOcean API token"
 }
