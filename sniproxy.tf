@@ -32,7 +32,7 @@ resource "digitalocean_droplet" "sniproxy" {
             "sleep 15",
             "sudo apt-get update",
             "sudo apt-get -y install git",
-            "cd /opt && git clone https://github.com/JamesClonk/netflix-proxy.git && cd netflix-proxy && ./build.sh -b 1 -c '${var.client_ip}'",
+            "cd /opt && git clone https://github.com/JamesClonk/netflix-proxy.git && cd netflix-proxy && ./build.sh -b 1",
         ]
     }
 }
