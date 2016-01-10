@@ -21,3 +21,16 @@ variable "do_ssh_public_key_file" {
 	description = "ssh public key file"
 	default = "ssh/sniproxy.pub"
 }
+
+variable "dnsimple_token" {
+	description = "DNSimple API token"
+}
+
+variable "dnsimple_email" {
+	description = "DNSimple EMail"
+}
+
+variable "dnsimple_domain" {
+	description = "DNSimple domain"
+	default = "jamesclonk.com"
+}
