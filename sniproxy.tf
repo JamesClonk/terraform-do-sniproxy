@@ -27,14 +27,22 @@ resource "digitalocean_droplet" "sniproxy" {
         key_file = "${var.do_ssh_private_key_file}"
     }
 
+    provisioner "file" {
+        source = "self-destruct.sh"
+        destination = "/tmp/self-destruct.sh"
+    }
+
     provisioner "remote-exec" {
         inline = [
             "sleep 15",
             "sudo apt-get update",
             "sudo apt-get -y install git",
-            "cd /opt && git clone https://github.com/JamesClonk/netflix-proxy.git && cd netflix-proxy && ./build.sh -b 1",
-            "cd /opt && git clone https://github.com/JamesClonk/terraform-do-sniproxy.git",
-            "cd /opt/terraform-do-sniproxy && ./self-destruct.sh ${var.do_token} ${digitalocean_droplet.sniproxy.id} ${var.do_selfdestruct} &",
+            "cd /opt && git clone https://github.com/JamesClonk/netflix-proxy.git",
+            "chmod +x /opt/netflix-proxy/build.sh",
+            "cd /opt/netflix-proxy && ./build.sh -b 1",
+            "chmod +x /tmp/self-destruct.sh",
+            "nohup /tmp/self-destruct.sh ${var.do_token} ${digitalocean_droplet.sniproxy.id} ${var.do_selfdestruct} &",
+            "sleep 5"
         ]
     }
 }

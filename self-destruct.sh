@@ -20,10 +20,11 @@ function destroyVM {
 	exit $?
 }
 
+SECONDS=$((MINUTES * 60))
 STARTTIME=`date +%s`
 while true; do
 	CURRENTTIME=`date +%s`
-	DEADLINE=$(( STARTTIME + MINUTES ))
+	DEADLINE=$(( STARTTIME + SECONDS ))
 	if [[ $CURRENTTIME -gt $DEADLINE ]]; then
 		destroyVM
 	fi
