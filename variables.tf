@@ -1,3 +1,8 @@
+variable "do_selfdestruct" {
+	description = "DigitalOcean droplet selfdestruct timer (in minutes)"
+	default = "360"
+}
+
 variable "do_token" {
 	description = "DigitalOcean API token"
 }

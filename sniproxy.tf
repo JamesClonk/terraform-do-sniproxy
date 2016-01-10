@@ -33,6 +33,8 @@ resource "digitalocean_droplet" "sniproxy" {
             "sudo apt-get update",
             "sudo apt-get -y install git",
             "cd /opt && git clone https://github.com/JamesClonk/netflix-proxy.git && cd netflix-proxy && ./build.sh -b 1",
+            "cd /opt && git clone https://github.com/JamesClonk/terraform-do-sniproxy.git",
+            "cd /opt/terraform-do-sniproxy && ./self-destruct.sh ${var.do_token} ${digitalocean_droplet.sniproxy.id} ${var.do_selfdestruct}",
         ]
     }
 }
