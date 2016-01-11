@@ -21,7 +21,7 @@ function destroyVM {
 }
 
 SLEEP_SECONDS=$(( SLEEP_MINUTES * 60 ))
-DEADLINE=$(( STARTTIME + SLEEP_SECONDS ))
+DEADLINE=$(( `date +%s` + SLEEP_SECONDS ))
 while true; do
 	CURRENTTIME=`date +%s`
 	if [[ $CURRENTTIME -gt $DEADLINE ]]; then
