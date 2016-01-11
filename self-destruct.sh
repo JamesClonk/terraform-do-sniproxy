@@ -10,9 +10,9 @@ fi
 
 API_TOKEN=$1
 DROPLET_ID=$2
-MINUTES=$3
+SLEEP_MINUTES=$3
 
-echo "called ./self-destruct.sh <API_TOKEN> ${DROPLET_ID} ${MINUTES}"
+echo "called ./self-destruct.sh <API_TOKEN> ${DROPLET_ID} ${SLEEP_MINUTES}"
 
 function destroyVM {
 	echo "curl -X DELETE -i -H \"Authorization: Bearer <API_TOKEN>\" \"https://api.digitalocean.com/v2/droplets/${DROPLET_ID}\""
@@ -20,11 +20,10 @@ function destroyVM {
 	exit $?
 }
 
-SECONDS=$((MINUTES * 60))
-STARTTIME=`date +%s`
+SLEEP_SECONDS=$(( SLEEP_MINUTES * 60 ))
+DEADLINE=$(( STARTTIME + SLEEP_SECONDS ))
 while true; do
 	CURRENTTIME=`date +%s`
-	DEADLINE=$(( STARTTIME + SECONDS ))
 	if [[ $CURRENTTIME -gt $DEADLINE ]]; then
 		destroyVM
 	fi
