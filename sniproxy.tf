@@ -3,12 +3,6 @@ provider "digitalocean" {
     token = "${var.do_token}"
 }
 
-# Create DNSimple provider
-provider "dnsimple" {
-    token = "${var.dnsimple_token}"
-    email = "${var.dnsimple_email}"
-}
-
 # Create ssh key
 resource "digitalocean_ssh_key" "sniproxy" {
     name = "docker sniproxy"
@@ -52,14 +46,3 @@ resource "digitalocean_droplet" "sniproxy" {
         ]
     }
 }
-
-# Add record to domain
-resource "dnsimple_record" "sniproxy" {
-    depends_on = ["digitalocean_droplet.sniproxy"]
-    domain = "${var.dnsimple_domain}"
-    name = "sniproxy"
-    value = "${digitalocean_droplet.sniproxy.ipv4_address}"
-    type = "A"
-    ttl = 3600
-}
-
